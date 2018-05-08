@@ -2,12 +2,12 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tokenizer.Test
+namespace Tokenizator.Test
 {
 	[TestClass]
 	public class Word
 	{
-		private Tokenizer.Word _tokenizer;
+		private Tokenizator.Word _tokenizer;
 
 		private bool EqualElementWise<T>(T[] seq1, T[] seq2)
 		{
@@ -26,7 +26,7 @@ namespace Tokenizer.Test
 		[TestInitialize]
 		public void SetUp()
 		{
-			_tokenizer = new Tokenizer.Word();
+			_tokenizer = new Tokenizator.Word();
 		}
 
 		#region Smiles

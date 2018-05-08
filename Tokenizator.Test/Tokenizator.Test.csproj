@@ -55,9 +55,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tokenizer\Tokenizer.csproj">
+    <ProjectReference Include="..\Tokenizator\Tokenizator.csproj">
       <Project>{e2921a89-2644-489e-b6c0-5aee4aae5a5d}</Project>
-      <Name>Tokenizer</Name>
+      <Name>Tokenizator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 
-namespace Tokenizer.Console
+namespace Tokenizator.Console
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
-			var tokenizer = new Tokenizer.Word();
+			var tokenizer = new Tokenizator.Word();
 			var text = ":) (: =] :] ))) ((((((( =))_))) :)) (= :-) :-X :X >:( sdf";
 			var trueAnswer = new[] { ":)", "(:", "=]", ":]", ")))", "(((((((", "=))_)))", ":))", "(=", ":-)", ":-X", ":X", ">:(" };
 			var answer = tokenizer.Iterate(text).ToArray();

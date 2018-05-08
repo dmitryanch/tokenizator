@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenizer", "Tokenizer\Tokenizer.csproj", "{E2921A89-2644-489E-B6C0-5AEE4AAE5A5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tokenizator", "Tokenizator\Tokenizator.csproj", "{E2921A89-2644-489E-B6C0-5AEE4AAE5A5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenizer.Test", "Tokenizer.Test\Tokenizer.Test.csproj", "{38D73828-7795-49F6-B13F-1233C1D73028}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenizator.Test", "Tokenizator.Test\Tokenizator.Test.csproj", "{38D73828-7795-49F6-B13F-1233C1D73028}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{280CB2AA-DA2C-4303-907C-F0705430DEC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenizer.Console", "Tokenizer.Console\Tokenizer.Console.csproj", "{04789AF5-BC69-4F83-9503-D993D8E0A352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tokenizator.Console", "Tokenizator.Console\Tokenizator.Console.csproj", "{04789AF5-BC69-4F83-9503-D993D8E0A352}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
