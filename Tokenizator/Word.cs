@@ -52,7 +52,22 @@ namespace Tokenizator
 	([01]?[0-9]|2[0-3])(?<timesep>[\:\-\.])[0-5][0-9](?:\k<timesep>[0-5][0-9])?
 )"
 			// uri
-			//+ @"|(?<uri>)"
+			+ @"
+|
+(?<absoluturi>
+	(?=[\/]*)
+	(?:
+		(?:(?<scheme>https?|ftp|file|ldap|mailto|urn)\:\/\/\/?)?			# optional http(s) or file prefix
+		(?:www\.|ftp\.)?													# optional www. or ftp. prefix
+		(?<route>
+			(?:[\w\-\.]+\w{2,20}\/)
+			(?<subroute>(?:[\w\.]+\/)+)?
+		)		# route
+	)
+	(?<query>\??(?:\&?[\w\-\%\;\.]+(?:\=[\w\-\%\;\.]+)?\/?)+)*				# query
+	(?<fragment>\#[\w\-\%\;\.]+)?											# fragment
+	(?=[\r\n\t\s\W])														# must be end of word
+)"
 			// currency
 			+ @"
 |
