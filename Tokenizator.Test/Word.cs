@@ -9,7 +9,7 @@ namespace Tokenizator.Test
 	{
 		private Tokenizator.Word _tokenizer;
 
-		private bool EqualElementWise<T>(T[] seq1, T[] seq2)
+		private static bool EqualElementWise<T>(T[] seq1, T[] seq2)
 		{
 			if (seq1 == null || seq2 == null) return false;
 			if (seq1.Length != seq2.Length) return false;
@@ -35,6 +35,32 @@ namespace Tokenizator.Test
 		{
 			var text = ":) (: =] :] ))) ((((((( =))_))) :)) (= :-) :-X :X >:( :*";
 			var trueAnswer = new[] { ":)", "(:", "=]", ":]", ")))", "(((((((", "=))_)))", ":))", "(=", ":-)", ":-X", ":X", ">:(", ":*" };
+			var answer = _tokenizer.Tokenize(text);
+			var enumerable = _tokenizer.Iterate(text).ToArray();
+			Assert.IsTrue(EqualElementWise(trueAnswer, answer));
+			Assert.IsTrue(EqualElementWise(trueAnswer, enumerable));
+		}
+		#endregion
+
+		#region Email
+		[TestMethod]
+		public void CheckEmails_TruePositive()
+		{
+			var text = "mail.mail@mail.com qwerty@qwerty.qwerty example_2.example-1@mail.ru";
+			var trueAnswer = new[] { "mail.mail@mail.com", "qwerty@qwerty.qwerty", "example_2.example-1@mail.ru"};
+			var answer = _tokenizer.Tokenize(text);
+			var enumerable = _tokenizer.Iterate(text).ToArray();
+			Assert.IsTrue(EqualElementWise(trueAnswer, answer));
+			Assert.IsTrue(EqualElementWise(trueAnswer, enumerable));
+		}
+		#endregion
+
+		#region Date
+		[TestMethod]
+		public void CheckDate_TruePositive()
+		{
+			var text = "12.12.1989 15.10.88 1.05.2012 2.8.2002 1380-08-20 2000/1/1";
+			var trueAnswer = new[] { "12.12.1989", "15.10.88", "1.05.2012", "2.8.2002", "1380-08-20", "2000/1/1"};
 			var answer = _tokenizer.Tokenize(text);
 			var enumerable = _tokenizer.Iterate(text).ToArray();
 			Assert.IsTrue(EqualElementWise(trueAnswer, answer));
