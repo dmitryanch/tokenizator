@@ -19,7 +19,7 @@ namespace Tokenizator
 	[\:\;\=Xx]
 	[\-]?
 	(?<smileBracketRight>[\p{Ps}\p{Pe}PpDdXx\*\<\>])+
-	[_0\(]*
+	[_0\(]*															# misspelling
 	\k<smileBracketRight>*
 	|
 	(?<smileBracketleft>[\p{Ps}\p{Pe}PpDdXx\*\<\>])
@@ -28,12 +28,12 @@ namespace Tokenizator
 	[\:\;\=Xx]
 	|
 	(?<=^|\s)\)+
-	[_0\(]*
+	[_0\(]*															# misspelling
 	\)+
 	|
 	(?<=^|\s)
 	\(+
-	[_0\)]*
+	[_0\)]*															# misspelling
 	\(+
 )
 |
@@ -80,42 +80,69 @@ namespace Tokenizator
 |
 (?<date>
 	\d{1,2}
-	(?<datesep>[\.\-\/])												# date separator
+	(?<datesep>[\.\-\/])											# date separator
 	\d{1,2}
-	\k<datesep>															# same separator
-	(?:\d{4}|\d{2})														# possible year part
+	\k<datesep>														# same separator
+	(?:\d{4}|\d{2})													# possible year part
 	|
-	(?:\d{4}|\d{2})														#possible year part
-	(?<datesep1>[\.\-\/])												# date separator
+	(?:\d{4}|\d{2})													# possible year part
+	(?<datesep1>[\.\-\/])											# date separator
 	\d{1,2}
-	\k<datesep1>														# same separator
+	\k<datesep1>													# same separator
 	\d{1,2}
 )
 |
 (?<time>
 	(?:[01]?[0-9]|2[0-3])
-	(?<timesep>[\:])													# time separator
+	(?<timesep>[\:])												# time separator
 	[0-5][0-9]
-	(?:\k<timesep>[0-5][0-9])?											# optional seconds part after same separator
+	(?:\k<timesep>[0-5][0-9])?										# optional seconds part after same separator
 )
 |
 (?<absoluturi>
 	(?=[\/]*)
 	(?:
-		(?:(?<scheme>https?|ftp|file|ldap|mailto|urn)\:\/\/\/?)?		# optional http(s) or file prefix
-		(?:www\.|ftp\.)?												# optional www. or ftp. prefix
+		(?:
+			(?<scheme>https?|ftp|file|ldap|mailto|urn)
+			\:\/\/\/?
+		)?															# optional http(s) or file prefix
+		(?:www\.|ftp\.)?											# optional www. or ftp. prefix
 		(?<route>
-			(?:[\w\-\.]+\w{2,20}\/)
-			(?<subroute>(?:[\w\.]+\/)+)?
-		)		# route
+			(?:
+				[\w\-\.]+
+				\w{2,20}\/
+			)
+			(?<subroute>
+				(?:[\w\.]+\/)+
+			)?
+		)															# route
 	)
-	(?<query>\??(?:\&?[\w\-\%\;\.]+(?:\=[\w\-\%\;\.]+)?\/?)+)*			# query
-	(?<fragment>\#[\w\-\%\;\.]+)?										# fragment
-	(?=[\r\n\t\s\W])													# must be end of word
+	(?<query>
+		\??
+		(?:
+			\&?
+			[\w\-\%\;\.]+
+			(?:
+				\=
+				[\w\-\%\;\.]+)?
+			\/?
+		)+
+	)*																# query
+	(?<fragment>\#[\w\-\%\;\.]+)?									# fragment
+	(?=[\r\n\t\s\W])												# must be end of word
 )
 |
 (?<currency>
-	\p{Sc}(?:\s?\d+(?:[\.\,]\d+)?)?|\d+(?:[\.\,]\d+)?(?:\s*\p{Sc})
+	\p{Sc}
+	(?:
+		\s?
+		\d+
+		(?:[\.\,]\d+)?
+	)?
+	|
+	\d+
+	(?:[\.\,]\d+)?
+	(?:\s*\p{Sc})
 )
 |
 (?<number>
@@ -123,7 +150,11 @@ namespace Tokenizator
 		\b
 			\d{1,3}
 			(?>
-				(?<ksep>[\,\'\. ])?\d{3}(?>\k<ksep>\d{3})*
+				(?<ksep>
+					[\,\'\. ]
+				)?
+				\d{3}
+				(?>\k<ksep>\d{3})*
 			)?
 			(?>[\.\,]\d+)?
 			(?>\s*%)?
@@ -141,9 +172,7 @@ namespace Tokenizator
 	[a-zA-ZА-Яа-яёЁ\d]+
 	[\-]
 	[a-zA-ZА-Яа-яёЁ\d]+
-)"
-			// just words
-			+ @"
+)
 |
 (?<word>
 	([a-zA-ZА-Яа-яёЁ\d]+)
