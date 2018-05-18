@@ -25,7 +25,7 @@ namespace Tokenizator
 	(?<smileBracketleft>[\p{Ps}\p{Pe}PpDdXx\*\<\>])
 	\k<smileBracketleft>*
 	[\-]?
-	[\:\;\=Xx]
+	[\:\=Xx]
 	|
 	(?<=^|\s)\)+
 	[_0\(]*															# misspelling
@@ -175,7 +175,7 @@ namespace Tokenizator
 )
 |
 (?<word>
-	([a-zA-ZА-Яа-яёЁ\d]+)
+	[a-zA-ZА-Яа-яёЁ\d]+
 )
 |
 (?<punctuation>

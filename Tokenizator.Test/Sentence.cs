@@ -98,6 +98,21 @@ namespace Tokenizer.Test
 			Assert.IsTrue(EqualElementWise(trueAnswer, answer));
 			Assert.IsTrue(EqualElementWise(trueAnswer, enumerable));
 		}
+
+		[TestMethod]
+		public void SentenceWithQuotes_TruePositive()
+		{
+			var text = @"Ценные советы Анатолия Ломаченко во многом помогли «Хай-Теку» собраться после нокдауна и финишировать лучшего легковеса на планете. Наверное, только отец мог начать разговор со слов «Я тебе что говорил?» ""Статус председателя Счетной палаты по закону о Счетной палате — это уровень первого вице-премьера"", — напомнил Кудрин после заседания фракции ЕР.";
+			var trueAnswer = new[] { "Ценные советы Анатолия Ломаченко во многом помогли «Хай-Теку» собраться после нокдауна и финишировать лучшего легковеса на планете.", "Наверное, только отец мог начать разговор со слов «Я тебе что говорил?»", @"""Статус председателя Счетной палаты по закону о Счетной палате — это уровень первого вице-премьера"", — напомнил Кудрин после заседания фракции ЕР." };
+			var answer = _tokenizer.Tokenize(text);
+			var enumerable = _tokenizer.Iterate(text).ToArray();
+			Assert.IsTrue(EqualElementWise(trueAnswer, answer));
+			Assert.IsTrue(EqualElementWise(trueAnswer, enumerable));
+		}
+		#endregion
+
+		#region Performance Test
+		
 		#endregion
 	}
 }
